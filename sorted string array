@@ -1,11 +1,22 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class str{
+public class str {
     public static void main(String[] args) {
-        String[] stringArray = { "banana", "apple", "cherry", "gauva" , "orange"};
-        Arrays.sort(stringArray);
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the number of strings");
+        int n = in.nextInt();
+        in.nextLine(); // Consume the newline character
+
+        String[] strarray = new String[n];
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter string: ");
+            strarray[i] = in.nextLine();
+        }
+
+        Arrays.sort(strarray);
         System.out.println("Sorted Array:");
-        for (String str : stringArray) {
+        for (String str : strarray) {
             System.out.println(str);
         }
     }

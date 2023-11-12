@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter a string for StringBuffer: ");
+        String inputString = in.nextLine();
+        
+        StringBuffer stringBuffer = new StringBuffer(inputString);
+
+        System.out.print("Enter a string to append: ");
+        String appendString = in.nextLine();
+        stringBuffer.append(appendString);
+        System.out.println("After appending: " + stringBuffer);
+
+        System.out.print("Enter a string to insert: ");
+        String insertString = in.nextLine();
+        
+        System.out.print("Enter the index to insert at: ");
+        int insertIndex = in.nextInt();
+        
+        stringBuffer.insert(insertIndex, insertString);
+        System.out.println("After inserting: " + stringBuffer);
+
+        System.out.print("Enter the index to modify: ");
+        int modifyIndex = in.nextInt();
+        
+        if (modifyIndex >= 0 && modifyIndex < stringBuffer.length()) {
+            System.out.print("Enter the character to replace at index " + modifyIndex + ": ");
+            char replaceChar = in.next().charAt(0);
+            stringBuffer.setCharAt(modifyIndex, replaceChar);
+            System.out.println("After modifying: " + stringBuffer);
+        } else {
+            System.out.println("Invalid index for modification.");
+        }
+
+    }
+}

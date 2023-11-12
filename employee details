@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+class Employee {
+    String empId;
+    String empName;
+    int empAge;
+    String empGender;
+    String empDesignation;
+    double empSalary;
+    String empAddress;
+
+    public Employee(String id, String name, int age, String gender, String designation, double salary, String address) {
+        empId = id;
+        empName = name;
+        empAge = age;
+        empGender = gender;
+        empDesignation = designation;
+        empSalary = salary;
+        empAddress = address;
+    }
+
+    public void displayDetails() {
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Employee Age: " + empAge);
+        System.out.println("Employee Gender: " + empGender);
+        System.out.println("Employee Designation: " + empDesignation);
+        System.out.println("Employee Salary: " + empSalary);
+        System.out.println("Employee Address: " + empAddress);
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number of employees:");
+        int n = scanner.nextInt();
+
+        Employee[] employees = new Employee[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for Employee " + (i + 1) + ":");
+            System.out.print("Employee ID: ");
+            String id = scanner.next();
+            System.out.print("Employee Name: ");
+            String name = scanner.next();
+            System.out.print("Employee Age: ");
+            int age = scanner.nextInt();
+            System.out.print("Employee Gender: ");
+            String gender = scanner.next();
+            System.out.print("Employee Designation: ");
+            String designation = scanner.next();
+            System.out.print("Employee Salary: ");
+            double salary = scanner.nextDouble();
+            System.out.print("Employee Address: ");
+            String address = scanner.next();
+
+            employees[i] = new Employee(id, name, age, gender, designation, salary, address);
+        }
+
+        System.out.println("Enter the Employee ID to display details:");
+        String searchId = scanner.next();
+
+        for (Employee emp : employees) {
+            if (emp.empId.equals(searchId)) {
+                emp.displayDetails();
+                break;
+            }
+        }
+        
+
+        scanner.close();
+    }
+}

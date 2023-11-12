@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+class Shirt {
+    int size;
+    int length;
+    static String material = "Cotton"; // Class variable for material
+
+    public Shirt(int a, int b) {
+        this.size = a;
+        this.length = b;
+    }
+
+    public void display() {
+        System.out.println("Collar size: " + size);
+        System.out.println("Sleeve length: " + length);
+        System.out.println("Material: " + material);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        Shirt[] shirts = new Shirt[3];
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Enter collar size for Shirt " + (i + 1) + ": ");
+            int a = in.nextInt();
+            System.out.println("Enter sleeve length for Shirt " + (i + 1) + ": ");
+            int b = in.nextInt();
+
+            // Creating a new Shirt object with user input and storing it in the array
+            shirts[i] = new Shirt(a, b);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\nShirt " + (i + 1) + " Details:");
+            shirts[i].display();
+        }
+    }
+}

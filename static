@@ -1,0 +1,45 @@
+public class Main {
+
+    private static int count = 0;
+    private static int happyCustomers;
+    private static final int MAX_TIME = 2;
+
+    static {
+        System.out.println("Let's start browsing");
+        System.out.println("Maximum allotted time for browsing: " + MAX_TIME + " hrs");
+    }
+
+    private String loginName;
+
+    public InternetUsers(String loginName) {
+        this.loginName = loginName;
+        count++;
+    }
+
+    public static void show() {
+        happyCustomers = count + 1; // Update happyCustomers in the show method
+        System.out.println("Number of Internet Users: " + count);
+        System.out.println("Number of Happy Customers: " + happyCustomers);
+    }
+
+    public void compute() {
+        System.out.println(loginName + (Math.random() > 0.5 ? " is a happy customer!" : " is not a happy customer."));
+        if (Math.random() > 0.5) {
+            happyCustomers++;
+        }
+    }
+
+    public static void main(String[] args) {
+        InternetUsers user1 = new InternetUsers("User1");
+        InternetUsers user2 = new InternetUsers("User2");
+        InternetUsers user3 = new InternetUsers("User3");
+
+        InternetUsers.show();
+
+        user1.compute();
+        user2.compute();
+        user3.compute();
+
+        InternetUsers.show();
+    }
+}

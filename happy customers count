@@ -1,0 +1,43 @@
+class InternetUsers{
+
+	static int count =0;
+	static int happyCustomers;
+	String name;
+	
+	static void show(){
+		System.out.println("internat users: "+ count);
+		System.out.println("happy customers: "+ happyCustomers);
+	}
+	
+	void compute(char x){
+		if(x == 'y'){
+			happyCustomers ++;
+			System.out.println(name);
+		}
+	}
+
+}
+
+public class internet{
+	public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+		
+		int ch = 0;
+		while(ch == 0){
+			System.out.println("enter name: ");
+			String s = sc.nextLine();
+			InternetUsers obj = new InternetUsers();
+			obj.name = s;
+			InternetUsers.count++;
+			System.out.println("Are you happy?");
+			char x = sc.nextLine().charAt(0);
+			obj.compute(x);
+			System.out.println("press 0 to add another, press any other no to exit.");
+			ch = sc.nextInt();
+			sc.nextLine();
+		}
+		InternetUsers.show();
+	}
+
+
+}

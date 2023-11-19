@@ -1,0 +1,77 @@
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    Node head;
+
+    // Function to delete a node with given data from the doubly linked list
+    void deleteNode(int key) {
+        Node temp = head;
+        boolean found = false;
+
+        while (temp != null) {
+            if (temp.data == key) {
+                found = true;
+                if (temp.prev != null)
+                    temp.prev.next = temp.next;
+                else
+                    head = temp.next;
+
+                if (temp.next != null)
+                    temp.next.prev = temp.prev;
+
+                break;
+            }
+            temp = temp.next;
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("Element not found in the list");
+        }
+    }
+
+    // Function to display the contents of the doubly linked list
+    void displayList() {
+        Node temp = head;
+        System.out.print("Doubly Linked List: ");
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.head = new Node(1);
+        Node second = new Node(2);
+        Node third = new Node(3);
+
+        list.head.next = second;
+        second.prev = list.head;
+        second.next = third;
+        third.prev = second;
+
+        try {
+            // Deleting element 2 from the list
+            list.deleteNode(2);
+            System.out.println("Element 2 deleted successfully.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            // Displaying the contents of the list after deletion
+            list.displayList();
+        }
+    }
+}

@@ -1,43 +1,44 @@
-class InternetUsers{
+import java.util.Scanner;
 
-	static int count =0;
-	static int happyCustomers;
-	String name;
-	
-	static void show(){
-		System.out.println("internat users: "+ count);
-		System.out.println("happy customers: "+ happyCustomers);
-	}
-	
-	void compute(char x){
-		if(x == 'y'){
-			happyCustomers ++;
-			System.out.println(name);
-		}
-	}
+public class happy {
 
-}
+    private static int count = 0;
+    private static int happyCustomers = 0; // Initialized as 0
+    private static final int MAX_TIME = 2;
+    private static Scanner in = new Scanner(System.in);
 
-public class internet{
-	public static void main(String[] args){
-	Scanner sc = new Scanner(System.in);
-		
-		int ch = 0;
-		while(ch == 0){
-			System.out.println("enter name: ");
-			String s = sc.nextLine();
-			InternetUsers obj = new InternetUsers();
-			obj.name = s;
-			InternetUsers.count++;
-			System.out.println("Are you happy?");
-			char x = sc.nextLine().charAt(0);
-			obj.compute(x);
-			System.out.println("press 0 to add another, press any other no to exit.");
-			ch = sc.nextInt();
-			sc.nextLine();
-		}
-		InternetUsers.show();
-	}
+    static {
+        System.out.println("Let's start browsing");
+        System.out.println("Maximum allotted time for browsing: " + MAX_TIME + " hrs");
+    }
 
+    private String loginName;
+    
+    public happy(String loginName) {
+        this.loginName = loginName;
+        count++;
+    }
 
+    public void show() {
+        System.out.println("Number of Internet Users: " + count);
+        System.out.println("Number of Happy Customers: " + happyCustomers);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Enter the number of people:");
+        int numberOfPeople = in.nextInt();
+
+        happy[] users = new happy[numberOfPeople];
+        for (int i = 0; i < numberOfPeople; i++) {
+            users[i] = new happy("User" + (i + 1));
+            System.out.println("Is User" + (i + 1) + " happy? Enter 0 for yes, 1 for no:");
+            int n = in.nextInt();
+            if (n == 0) {
+                happyCustomers++;
+            }
+        }
+
+        // Show the final count of happy customers
+        users[0].show(); // Assuming the count of happy customers will be the same for all users
+    }
 }

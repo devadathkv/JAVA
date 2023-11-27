@@ -1,0 +1,35 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        String inputFile = "input.txt"; // Replace with your input file name
+        String outputFile = "output.txt"; // Replace with your output file name
+
+        try {
+            // Creating FileInputStream to read data from the input file
+            FileInputStream inputStream = new FileInputStream(inputFile);
+
+            // Creating FileOutputStream to write data to the output file
+            FileOutputStream outputStream = new FileOutputStream(outputFile);
+
+            // Reading data from the input file
+            int data;
+            while ((data = inputStream.read()) != -1) {
+                // Writing data to the output file
+                outputStream.write(data);
+            }
+
+            // Closing input and output streams
+            inputStream.close();
+            outputStream.close();
+
+            System.out.println("Data successfully copied from " + inputFile + " to " + outputFile);
+        } catch (IOException e) {
+            // Catching and handling file-related exceptions
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}

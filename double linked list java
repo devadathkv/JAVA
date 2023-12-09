@@ -1,0 +1,93 @@
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    Node head;
+
+    // Method to insert a node at the end of the doubly linked list
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+        newNode.prev = current;
+    }
+
+    // Method to delete a given element from the doubly linked list
+    public void delete(int data) {
+        Node current = head;
+        while (current != null) {
+            if (current.data == data) {
+                if (current.prev != null) {
+                    current.prev.next = current.next;
+                } else {
+                    head = current.next;
+                }
+                if (current.next != null) {
+                    current.next.prev = current.prev;
+                }
+                return;
+            }
+            current = current.next;
+        }
+        System.out.println("Element not found in the list.");
+    }
+
+    // Method to display the contents of the doubly linked list
+    public void display() {
+        Node current = head;
+        if (head == null) {
+            System.out.println("The list is empty.");
+            return;
+        }
+
+        System.out.println("Contents of the list: ");
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+
+        // Creating a doubly linked list of elements
+        list.insert(5);
+        list.insert(10);
+        list.insert(15);
+        list.insert(20);
+        list.insert(25);
+
+        // Displaying contents of the list before deletion
+        System.out.println("Contents of the list before deletion:");
+        list.display();
+
+        // Deleting a given element (e.g., 15) from the list
+        int elementToDelete = 15;
+        System.out.println("Deleting element: " + elementToDelete);
+        list.delete(elementToDelete);
+
+        // Displaying contents of the list after deletion
+        System.out.println("Contents of the list after deletion:");
+        list.display();
+    }
+}
